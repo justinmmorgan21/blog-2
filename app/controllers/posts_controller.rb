@@ -2,13 +2,10 @@ class PostsController < ApplicationController
   before_action :authenticate_user, except: [:index, :show]
 
   def index
-    posts = current_user.posts
-    posts = posts.select{|post| 
-      post.title.include? "!"
-      # post_title = post.title
-      # p post.title
-      # p (post_title.include? "!") ? "YES" : "NO"
-    }
+    posts = Post.all#current_user.posts
+    # posts = posts.select{|post| 
+    #   post.title.include? "!"
+    # }
     # posts = Post.all.order(:id)
     render json: posts
   end
